@@ -100,16 +100,21 @@ function saveAppointment() {
 
   // We are ready to store this appointment object in our list of appointments
 
-  let selectedDay = document.querySelector(".selected").innerText;
-  let selectedDayNumber = parseInt(selectedDay);
-  let index = selectedDayNumber - 1; // Days start from 1, but arrays count from 0
-  let appointmentsForSelectedDay = appointments[index];
+  let selectedDayNode = document.querySelector(".selected");
+  if (selectedDayNode !== null) {
+    let selectedDay = selectedDayNode.innerText;
+    let selectedDayNumber = parseInt(selectedDay);
+    let index = selectedDayNumber - 1; // Days start from 1, but arrays count from 0
+    let appointmentsForSelectedDay = appointments[index];
 
-  appointmentsForSelectedDay.push(appointmentObject);
+    appointmentsForSelectedDay.push(appointmentObject);
 
-  // After adding this new element, we need to visualize again
-  // the list of appointments for the day.
-  visualizeAppointments();
+    // After adding this new element, we need to visualize again
+    // the list of appointments for the day.
+    visualizeAppointments();
+  } else {
+    alert("You must select a day to add an appointment!");
+  }
 }
 
 function onLoadActions() {
