@@ -17,6 +17,7 @@ Features that will/could be implemented in future versions:
 
 - As a user, I want to invite other people to my events, etc.
 - Adding Reminders etc.
+- Drag & drop appoinments to move them on a different time & date.
 - etc.
 
 ### Functional requirements VS Non-functional requirements
