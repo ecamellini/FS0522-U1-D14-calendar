@@ -34,13 +34,13 @@ let appointments = [
 //    and get only the ones for the current day.
 // ---------------------------------------------
 
-function visualizeAppointments(event) {
+function visualizeAppointments() {
   // First thing we do to visualize the appointments for the day:
   // we just clear the appointments ul tag content, so that
   // we have a clean area where to visualize the new appointments.
   document.getElementById("appointments-list").innerHTML = "";
 
-  let selectedDay = event.target.innerText;
+  let selectedDay = document.querySelector(".selected").innerText;
   let selectedDayNumber = parseInt(selectedDay);
   let index = selectedDayNumber - 1; // Days start from 1, but arrays count from 0
   let appointmentsForSelectedDay = appointments[index];
@@ -82,7 +82,32 @@ function onDayClick(event) {
   // ^ ^  This is an event listener, we know it will receive as parameter the event data object
 
   selectDay(event);
-  visualizeAppointments(event);
+  visualizeAppointments();
+}
+
+function saveAppointment() {
+  // 1) we get the two input values
+  let inputTime = document.getElementById("appointment-time").value;
+  let inputTitle = document.getElementById("appointment-title").value;
+
+  let appointmentObject = {
+    // We put the two values in a new object.
+    time: inputTime,
+    title: inputTitle,
+  };
+
+  // We are ready to store this appointment object in our list of appointments
+
+  let selectedDay = document.querySelector(".selected").innerText;
+  let selectedDayNumber = parseInt(selectedDay);
+  let index = selectedDayNumber - 1; // Days start from 1, but arrays count from 0
+  let appointmentsForSelectedDay = appointments[index];
+
+  appointmentsForSelectedDay.push(appointmentObject);
+
+  // After adding this new element, we need to visualize again
+  // the list of appointments for the day.
+  visualizeAppointments();
 }
 
 function onLoadActions() {
