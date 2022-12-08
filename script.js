@@ -12,14 +12,15 @@ let exampleAppointmentsForDay = [
 // A month, a calendar, has many days. So we need a list
 // of appointments for each day.
 let appointments = [
-  [
-    { time: "9:00", title: "Epicode lecture" },
-    { time: "12:30", title: "Lunch" },
-  ], // Day 1
-  [], // Day 2
-  [], // Day 3
-  [{ time: "12:00", title: "Lunch in the city center" }], // Day 4
-  [], // .... up to 30
+  // EXAMPLE
+  // [
+  //   { time: "9:00", title: "Epicode lecture" },
+  //   { time: "12:30", title: "Lunch" },
+  // ], // Day 1
+  // [], // Day 2
+  // [], // Day 3
+  // [{ time: "12:00", title: "Lunch in the city center" }], // Day 4
+  // [], // .... up to 30
 ];
 
 // ANOTHER WAY TO DO IT:
@@ -81,6 +82,7 @@ function selectDay(event) {
 function onDayClick(event) {
   // ^ ^  This is an event listener, we know it will receive as parameter the event data object
 
+  console.log(appointments);
   selectDay(event);
   visualizeAppointments();
 }
@@ -129,6 +131,12 @@ function onLoadActions() {
 
     // 3) Append it / add it somewhere in the DOM
     document.getElementById("days-container").appendChild(dayNode);
+
+    // For every day we create, we also want to have a list
+    // where to store the appointments for that day.
+    appointments.push([
+      // we add this EMPTY LIST to memory, so that we can store here appointments
+    ]);
   }
 }
 
